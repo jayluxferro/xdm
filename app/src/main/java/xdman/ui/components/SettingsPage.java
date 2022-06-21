@@ -1485,7 +1485,7 @@ public class SettingsPage extends JPanel implements ActionListener, ListSelectio
 
 		h = getScaledInt(20);
 		cmbSeg = new JComboBox<String>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12",
-				"13", "14", "15", "16", "20", "25", "30", "32" });
+				"13", "14", "15", "16", "20", "25", "30", "32" , "64"});
 
 		cmbSeg.setBackground(ColorResource.getDarkerBgColor());
 		cmbSeg.setBounds(getScaledInt(250), y, getScaledInt(75), h);

@@ -13,16 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.*;
 
 import xdman.Config;
 import xdman.DownloadEntry;
@@ -311,8 +302,13 @@ public class DownloadWindow extends JFrame implements ActionListener {
 		sv.addActionListener(this);
 		pop.add(sv);
 
-		pop.setInvoker(btnMore);
+		JMenuItem sl = new JMenuItem(StringResource.get("MENU_SPEED_LIMITER"));
+		sl.setName("LIMIT SPEED");
+		sl.setForeground(Color.WHITE);
+		sl.addActionListener(this);
+		pop.add(sl);
 
+		pop.setInvoker(btnMore);
 	}
 
 	void applyStyle(CustomButton btn) {
@@ -344,6 +340,11 @@ public class DownloadWindow extends JFrame implements ActionListener {
 			pop.show(btnMore, 0, btnMore.getHeight());
 		} else if ("SAVE_AS".equals(name)) {
 			changeFile(id);
+		} else if ("LIMIT_SPEED".equals(name)) {
+			int ret = SpeedLimiter.getSpeedLimit();
+			if (ret >= 0) {
+				Config.getInstance().setSpeedLimit(ret);
+			}
 		}
 	}
 
